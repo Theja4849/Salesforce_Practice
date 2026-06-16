@@ -1,0 +1,67 @@
+<template>
+
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-contact" title="contact">
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#contact"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Employees</span>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>Employees</span>
+                            </h2>
+                        </div>
+
+                    </header>
+                </div>
+                <div class="slds-card__body">
+                    <table
+                        class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout"
+                        role="grid" aria-label="Example table in a Card">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="name">Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="age">Age</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Title">Company</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Email">Email</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <!-- should not use for each in table body instead use it in template tag -->
+                        <tbody >
+                          <template for:each={employees} for:item="emp">
+                            <tr key={emp.email} class="slds-hint-parent">
+                                <th scope="row">
+                                    <div class="slds-truncate" title="Amy Choi">
+                                        <a href="#" tabindex="-1">{emp.name}</a>
+                                    </div>
+                                </th>
+                                <td role="gridcell">
+                                    <div class="slds-truncate" title="Company One">{emp.age}</div>
+                                </td>
+                                <td role="gridcell">
+                                    <div class="slds-truncate" title="Director of Operations">{emp.company}
+                                    </div>
+                                </td>
+                                <td role="gridcell">
+                                    <div class="slds-truncate" title="adam@company.com">{emp.email}</div>
+                                </td>
+                            </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+</template>
