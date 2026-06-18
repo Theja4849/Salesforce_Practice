@@ -1,5 +1,4 @@
 <template>
-
             <article class="slds-card">
                 <div class="slds-card__header slds-grid">
                     <header class="slds-media slds-media_center slds-has-flexi-truncate">
@@ -40,7 +39,7 @@
                             </tr>
                         </thead>
                         <!-- should not use for each in table body instead use it in template tag -->
-                        <tbody >
+                        <tbody>
                           <template for:each={employees} for:item="emp">
                             <tr key={emp.email} class="slds-hint-parent">
                                 <th scope="row">
@@ -64,4 +63,5 @@
                     </table>
                 </div>
             </article>
+  
 </template>

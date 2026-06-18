@@ -89,3 +89,12 @@ export default class LifeCycleMethods extends LightningElement {}
         //                          console.error(error);
         //                     }
         //             }
+
+//         Parent → Child
+//     @api
+
+// Child → Parent
+//     CustomEvent
+
+// Unrelated Components
+//     Lightning Message Service (LMS)

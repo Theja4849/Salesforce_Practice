@@ -1,6 +1,6 @@
 <template>
     <div class="slds-box">
-        <div class="slds-grid slds-wrap " >
+        <div class="slds-grid slds-wrap ">
             <div class="slds-form-element slds-col slds-size_1-of-2 slds-p-horizontal_medium">
                 <label class="slds-form-element__label" for="text-input-id-47">
                     <abbr class="slds-required" title="required" aria-hidden="true">* </abbr>User Name:</label>
@@ -17,20 +17,22 @@
                         onchange={handleInputChange} required="" type="number" class="slds-input" />
                 </div>
             </div>
-             <div class="slds-form-element slds-col slds-size_1-of-2 slds-p-horizontal_medium">
+            <div class="slds-form-element slds-col slds-size_1-of-2 slds-p-horizontal_medium">
                 <label class="slds-form-element__label" for="text-input-id-47">
                     <abbr class="slds-required" title="required" aria-hidden="true">* </abbr> Email:</label>
                 <div class="slds-form-element__control">
-                    <input id="text-input-id-49" placeholder="Please Enter Your Email..." data-field="email" value={details.email}
-                        onchange={handleInputChange} required="" type="email" class="slds-input" />
+                    <input id="text-input-id-49" placeholder="Please Enter Your Email..." data-field="email"
+                        value={details.email} onchange={handleInputChange} required="" type="email"
+                        class="slds-input" />
                 </div>
             </div>
-             <div class="slds-form-element slds-col slds-size_1-of-2 slds-p-horizontal_medium">
+            <div class="slds-form-element slds-col slds-size_1-of-2 slds-p-horizontal_medium">
                 <label class="slds-form-element__label" for="text-input-id-47">
                     <abbr class="slds-required" title="required" aria-hidden="true">* </abbr> Company:</label>
                 <div class="slds-form-element__control">
-                    <input id="text-input-id-50" placeholder="Please Enter Your company name..." data-field="company" value={details.company}
-                        onchange={handleInputChange} required="" type="text" class="slds-input" />
+                    <input id="text-input-id-50" placeholder="Please Enter Your company name..." data-field="company"
+                        value={details.company} onchange={handleInputChange} required="" type="text"
+                        class="slds-input" />
                 </div>
             </div>
         </div>
@@ -38,11 +40,25 @@
         <div class="slds-col slds-size_6-of-12 slds-align_absolute-center" style="height:5rem">
             <button class="slds-button slds-button_brand" onclick={handleSubmit}>Submit</button>
             <button class="slds-button slds-button_success" onclick={handleEmployees}>Get Employees</button>
+            <button class="slds-button slds-button_success" onclick={getAccountsData}>Get Accounts</button>
         </div>
 
         <template if:true={isOpen}>
             <c-display-employees-data-in-child employees={employees}></c-display-employees-data-in-child>
         </template>
+          <template if:true={isAccountsOpen}>
+            <c-display-employees-data-in-child class="accountChild"  onaccountsloaded={handleAccountsLoaded}></c-display-employees-data-in-child>
+        </template>
+
+        <template if:true={isAccountsOpen}>
+
+            <div style="height: 300px;">
+                <lightning-datatable key-field="id" data={accounts} columns={columns}>
+                </lightning-datatable>
+            </div>
+        </template>
+
+
 
     </div>
 </template>

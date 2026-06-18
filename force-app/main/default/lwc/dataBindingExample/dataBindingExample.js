@@ -1,49 +1,120 @@
-import { LightningElement } from 'lwc';
+import { LightningElement } from "lwc";
+import Toast from 'lightning/toast';
 
 export default class DataBindingExample extends LightningElement {
-   details={
-    name:'',
-    age:'',
-    company:'',
-    email:''
-   }
+  details = {
+    name: '',
+    age: '',
+    company: '',
+    email: ''
+  }
 
-    isOpen=false
+  isOpen = false
 
-   //employees empty objects 
-   employees=[]
+  isAccountsOpen = false
 
-   //to handle input change
-   handleInputChange(event){
-    console.log('handle input triggered',event.target.dataset.field, event.target.value)
-      this.details={
-        ...this.details,
-        [event.target.dataset.field]:event.target.value
-      }
+  //employees empty objects 
+  employees = []
 
-   }
+  //columns for account display
+  columns = [
+    {
+      label: 'Name',
+      fieldName: 'Name',
+      type: 'text'
+    },
+    {
+      label: 'Revenue',
+      fieldName: 'AnnualRevenue',
+      type: 'currency'
+    },
+    {
+      label: 'Phone',
+      fieldName: 'Phone',
+      type: 'phone'
+    },
+    {
+      label: 'Rating',
+      fieldName: 'Rating',
+      type: 'text'
+    }
+  ]
+  accounts = []
 
-   handleSubmit(){
-     console.log('Submitted Data');
+  //to handle input change
+  handleInputChange(event) {
+    console.log('handle input triggered', event.target.dataset.field, event.target.value)
+    this.details = {
+      ...this.details,
+      [event.target.dataset.field]: event.target.value
+    }
+
+  }
+
+  handleSubmit() {
+    console.log('Submitted Data');
     this.employees.push(this.details)
     console.log("displaying employees", JSON.stringify(this.employees))
 
-    
-      this.details={
-        name:'',
-        age:'',
-        company:'',
-        email:''
-      }
-    
-   }
 
-   handleEmployees(){
+    this.details = {
+      name: '',
+      age: '',
+      company: '',
+      email: ''
+    }
+
+  }
+
+
+  handleEmployees() {
     console.log("triggering handle employee function")
-    if(this.isOpen==true) this.isOpen=false
-    else this.isOpen=true
+    if (this.isOpen == true) {
+      this.isOpen = false
+    }
+    else {
+      this.isOpen = true
+      this.isAccountsOpen = false
+    }
+  }
 
-   }
+  handleAccountsLoaded(event) {
+    console.log("triggering account handle function at parent side", this.isAccountsOpen)
+
+
+    console.log('recived accounts from event which is comming from child', event.detail)
+    this.accounts = event.detail
+
+    
+Toast.show({
+    label: 'Success',
+    message: 'Accounts fetched successfully',
+    variant: 'success'
+});
+  }
+
+  getAccountsData() {
+
+    if (this.isAccountsOpen == true) {
+      this.isAccountsOpen = false
+
+    } else {
+      this.isOpen = false
+      this.isAccountsOpen = true
+    }
+    console.log('button clicked and called child method in parent component')
+    const childComp = this.template.querySelector('c-display-employees-data-in-child')
+    if (childComp) {
+      childComp.loadAccountsData()
+      console.log('Selected Child', childComp);
+    }
+
+
+  }
+
+
+
+
 }
 
 //Data Binding is the process of connecting JavaScript properties 

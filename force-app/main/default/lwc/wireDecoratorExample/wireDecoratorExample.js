@@ -30,9 +30,10 @@ export default class WireDecoratorExample extends LightningElement {
         })
     }
 
-     get hasAccounts() {
+     hasAccounts() {
     return this.accountsToDisplay &&
            this.accountsToDisplay.length > 0;
 }
-     
+
+  
 }
